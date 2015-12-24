@@ -156,14 +156,6 @@ void drawLightTrail() {
       trail[i] = new PVector(px, py);
     }
   }
-  //if (frameCounter) {
-  //  //checks for collisions with trail
-  //  for (int i = 2; i < trail.length; i++) {
-  //    if (px == trail[i].x && py == trail[i].y) {
-  //      gameIsOver = true;
-  //    }
-  //  }
-  //}
 }
 
 void drawLightTrail2() {
@@ -183,16 +175,6 @@ void drawLightTrail2() {
       trail2[i] = new PVector(px2, py2);
     }
   }
-
-  //if (frameCounter) {
-  //  //checks for collisions with trail
-  //  for (int i = 2; i < trail2.length; i++) {
-  //    if (px2 == trail2[i].x && py2 == trail2[i].y) {
-  //      gameIsOver = true;
-  //    }
-  //  }
-  //}
-  //frameCounter = true;
 }
 
 void reasonsForLoss() {
