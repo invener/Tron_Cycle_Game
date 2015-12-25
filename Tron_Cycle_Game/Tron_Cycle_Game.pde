@@ -4,15 +4,15 @@ boolean frameCounter = false;
 String loser = "unkown";
 
 //bike variables
-int px = width/5;
-int py = height/2;
+int px = 100;
+int py = 300;
 int vx = 2;
 int vy = 0;
 boolean bikeIsVertical = false;
 
 int px2 = 500;
-int py2 = height/2;
-int vx2 = 2;
+int py2 = 300;
+int vx2 = -2;
 int vy2 = 0;
 boolean bikeIsVertical2 = false;
 
@@ -28,7 +28,7 @@ void setup() {
   size(600, 600);
   //sets background color to be black
   background(0, 0, 0);
-  //initializes array for light cycle trail
+  //initializes arrays for light cycle trails
   for (int i = 1; i < sizeOfArray; i++) {
     trail[i] = new PVector(px, py);
   }
@@ -50,19 +50,50 @@ void draw() {
     drawLightTrail2();
     reasonsForLoss();
   }
+  //when game is over
   if (gameIsOver == true) {
     background(0);
-    println("Game Over");
-    println(loser);
     textSize(25);
     textAlign(CENTER);
     text("Game Over", width/2, height/2);
     text(loser, width/2, height/2 + 50);
+    text("Press Enter or Return to restart", width/2, height - 50);
+    line(0, 0, 0, height-1);
+    line(0, height-1, width-1, height-1);
+    line(0, 0, width-1, 0);
+    line(width-1, 0, width-1, height-1);
+    //when mouse is clicked, game restarts
+    if (key == RETURN || key == ENTER) {
+      px = 100;
+      py = 300;
+      vx = 2;
+      vy = 0;
+      bikeIsVertical = false;
+
+      px2 = 500;
+      py2 = 300;
+      vx2 = -2;
+      vy2 = 0;
+      bikeIsVertical2 = false;
+
+      for (int i = 1; i < sizeOfArray; i++) {
+        trail[i] = new PVector(px, py);
+      }
+      for (int i = 1; i < sizeOfArray2; i++) {
+        trail2[i] = new PVector(px2, py2);
+      }
+
+
+
+      gameIsOver = false;
+    }
   }
   frameCounter = true;
 }
 
-void drawLightCycle(float x, float y, boolean isVertical) {
+void drawLightCycle(float x, float y, boolean isVertical, color thisColor) {
+  fill(thisColor);
+  noStroke();
   if (isVertical) {
     ellipse(x, y, 10, 20);
   } else if (isVertical == false) {
@@ -103,7 +134,7 @@ void drawCompleteBike() {
   px += vx;
   py += vy;
   //draw the lightcycle
-  drawLightCycle(px, py, bikeIsVertical);
+  drawLightCycle(px, py, bikeIsVertical, color(0, 0, 200));
 }
 
 void drawSecondCompleteBike() {
@@ -136,7 +167,7 @@ void drawSecondCompleteBike() {
   px2 += vx2;
   py2 += vy2;
   //draw the lightcycle
-  drawLightCycle(px2, py2, bikeIsVertical2);
+  drawLightCycle(px2, py2, bikeIsVertical2, color(200, 0, 0));
 }
 
 void drawLightTrail() {
