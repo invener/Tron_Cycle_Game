@@ -68,12 +68,13 @@ void draw() {
       text("Game Over", width/2, height/2);
       text(loser, width/2, height/2 + 50);
       text("Press Enter or Return to restart", width/2, height - 50);
-      line(0, 0, 0, height-1);
-      line(0, height-1, width-1, height-1);
-      line(0, 0, width-1, 0);
-      line(width-1, 0, width-1, height-1);
+      //line(0, 0, 0, height-1);
+      //line(0, height-1, width-1, height-1);
+      //line(0, 0, width-1, 0);
+      //line(width-1, 0, width-1, height-1);
       //when enter/return is pressed, game restarts
       if (key == RETURN || key == ENTER) {
+        //set bike 1 and 2 variables back to starting ones
         px = 100;
         py = 300;
         vx = 2;
@@ -88,7 +89,7 @@ void draw() {
 
         bikeIsFacing = 4;
         bikeIsFacing2 = 2;
-
+  
         for (int i = 1; i < sizeOfArray; i++) {
           trail[i] = new PVector(px, py);
         }
@@ -116,9 +117,11 @@ void drawLightCycle(float x, float y, boolean isVertical, color thisColor, int b
   }
 }
 
+//just checking if keys are pressed
 void keyPressed() {
 }
 
+//draw first bike
 void drawCompleteBike() {
   if (key == 'w') {
     if (vy != 2) {
@@ -156,6 +159,7 @@ void drawCompleteBike() {
   drawLightCycle(px, py, bikeIsVertical, color(0, 0, 200), bikeIsFacing);
 }
 
+//draw second bike
 void drawSecondCompleteBike() {
   if (keyCode == UP) {
     if (vy2 != 2) {
